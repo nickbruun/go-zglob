@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/nickbruun/go-zglob"
+	"github.com/nickbruun/go-zglob/fastwalk"
 )
 
 var (
