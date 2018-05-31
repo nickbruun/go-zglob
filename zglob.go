@@ -17,14 +17,14 @@ var (
 	mu    sync.Mutex
 )
 
-type zenv struct {
+type Pattern struct {
 	dre     *regexp.Regexp
 	fre     *regexp.Regexp
 	pattern string
 	root    string
 }
 
-func New(pattern string) (*zenv, error) {
+func New(pattern string) (*Pattern, error) {
 	globmask := ""
 	root := ""
 	for n, i := range strings.Split(filepath.ToSlash(pattern), "/") {
@@ -190,7 +190,7 @@ func Match(pattern, name string) (matched bool, err error) {
 	return zenv.Match(name), nil
 }
 
-func (z *zenv) Match(name string) bool {
+func (z *Pattern) Match(name string) bool {
 	if z.root == "" {
 		return z.pattern == name
 	}
