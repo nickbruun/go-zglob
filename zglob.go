@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/mattn/go-zglob/fastwalk"
+	"github.com/nickbruun/go-zglob"
 )
 
 var (
@@ -56,7 +56,7 @@ func New(pattern string) (*Pattern, error) {
 		}
 	}
 	if root == "" {
-		return &zenv{
+		return &Pattern{
 			dre:     nil,
 			fre:     nil,
 			pattern: pattern,
@@ -107,7 +107,7 @@ func New(pattern string) (*Pattern, error) {
 		dirmask = "(?i:" + dirmask + ")"
 		filemask = "(?i:" + filemask + ")"
 	}
-	return &zenv{
+	return &Pattern{
 		dre:     regexp.MustCompile("^" + dirmask),
 		fre:     regexp.MustCompile("^" + filemask + "$"),
 		pattern: pattern,
